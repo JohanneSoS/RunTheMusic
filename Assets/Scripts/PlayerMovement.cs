@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public int background;
 
     private Animator anim;
-    
+
     void Start()
     {
         anim = GetComponent<Animator>();
