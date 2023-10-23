@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         background = 0;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
