@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class ChangeBackground : MonoBehaviour
 {
-    //[SerializeField] PlayerMovement background;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DisableBackground()
     {
         gameObject.SetActive(false);

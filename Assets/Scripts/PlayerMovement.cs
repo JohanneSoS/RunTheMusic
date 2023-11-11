@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public ChangeBackground ChangeBackground;
-    public DisablePortalScript DisablePortal;
-
+    
     [SerializeField] private float horizontal;
     [SerializeField] private float speed = 6f;
     [SerializeField] private float jumpingPower = 10f;
@@ -18,14 +16,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] public int background;
+    public BackGroundType bgType;
 
     private Animator anim;
+    
+    [SerializeField] private GameObject Grasslands;
+    [SerializeField] private GameObject Cavelands;
+    [SerializeField] private GameObject Darkroom;
+    private Dictionary<BackGroundType, GameObject> backGroundDictionary;
+
+    private BackGroundType triggerBackground = BackGroundType.None;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        background = 0;
+        bgType = BackGroundType.GrassLands;
+        backGroundDictionary = new Dictionary<BackGroundType, GameObject>()
+        {
+            { BackGroundType.CaveLands, Cavelands },
+            { BackGroundType.DarkRoom, Darkroom },
+            { BackGroundType.GrassLands, Grasslands }
+        };
     }
 
 
@@ -56,24 +67,28 @@ public class PlayerMovement : MonoBehaviour
         }
         
         if (rb.velocity.y != 0f)
-        {
+        { 
             anim.SetBool("IsJumping", true);
         }
         else
         {
             anim.SetBool("IsJumping", false);
         }
-        
-        if (background == 1)
+
+        if (triggerBackground != BackGroundType.None &&
+            (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
-            ChangeBackground.DisableBackground();
+            bgType = triggerBackground;
+            triggerBackground = BackGroundType.None;
+
+            foreach (var backGroundKeyValue in backGroundDictionary)
+            {
+                backGroundKeyValue.Value.SetActive(false);
+            }
+            
+            backGroundDictionary[bgType].SetActive(true);
         }
-        
-        if (background == 0)
-        {
-            ChangeBackground.EnableBackground();
-        }
-        
+
     }
 
     private void FixedUpdate()
@@ -97,13 +112,30 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("BackgroundChanger"))
-        {
-            background = 1;
-            DisablePortal.DisablePortal();
-        }
+        
+            if (other.gameObject.CompareTag("CaveDoor"))
+            {
+                triggerBackground = BackGroundType.CaveLands;
+            }
+            else if (other.gameObject.CompareTag("DarkroomDoor"))
+            {
+                triggerBackground = BackGroundType.DarkRoom;
+            }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        triggerBackground = BackGroundType.None;
+    }
+
+    public enum BackGroundType
+    {
+        None,
+        GrassLands,
+        CaveLands,
+        DarkRoom
     }
     
 }
