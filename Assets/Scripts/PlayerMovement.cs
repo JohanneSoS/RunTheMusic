@@ -16,27 +16,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    public BackGroundType bgType;
+    public LevelScript levelScript;
 
-    private Animator anim;
+    /*public BackGroundType bgType;
     
     [SerializeField] private GameObject Grasslands;
     [SerializeField] private GameObject Cavelands;
     [SerializeField] private GameObject Darkroom;
     private Dictionary<BackGroundType, GameObject> backGroundDictionary;
 
-    private BackGroundType triggerBackground = BackGroundType.None;
+    private BackGroundType triggerBackground = BackGroundType.None;*/
 
+    private Animator anim;
+    
     void Start()
     {
         anim = GetComponent<Animator>();
-        bgType = BackGroundType.GrassLands;
+        /*bgType = BackGroundType.GrassLands;
         backGroundDictionary = new Dictionary<BackGroundType, GameObject>()
         {
             { BackGroundType.CaveLands, Cavelands },
             { BackGroundType.DarkRoom, Darkroom },
             { BackGroundType.GrassLands, Grasslands }
-        };
+        };*/
     }
 
 
@@ -75,18 +77,10 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsJumping", false);
         }
 
-        if (triggerBackground != BackGroundType.None &&
+        if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
-            bgType = triggerBackground;
-            triggerBackground = BackGroundType.None;
-
-            foreach (var backGroundKeyValue in backGroundDictionary)
-            {
-                backGroundKeyValue.Value.SetActive(false);
-            }
-            
-            backGroundDictionary[bgType].SetActive(true);
+            levelScript.EnterDoor();
         }
 
     }
@@ -117,25 +111,27 @@ public class PlayerMovement : MonoBehaviour
         
             if (other.gameObject.CompareTag("CaveDoor"))
             {
-                triggerBackground = BackGroundType.CaveLands;
+                levelScript.triggerBackground = BackGroundType.CaveLands;
             }
             else if (other.gameObject.CompareTag("DarkroomDoor"))
             {
-                triggerBackground = BackGroundType.DarkRoom;
+                levelScript.triggerBackground = BackGroundType.DarkRoom;
             }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        triggerBackground = BackGroundType.None;
+        levelScript.triggerBackground = BackGroundType.None;
     }
 
-    public enum BackGroundType
+    
+    /*public enum BackGroundType
     {
         None,
         GrassLands,
         CaveLands,
         DarkRoom
-    }
+    }*/
+    
     
 }
