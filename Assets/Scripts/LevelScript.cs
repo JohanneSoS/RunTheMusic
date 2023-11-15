@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
+using FMOD.Studio;
 using UnityEngine;
 
 public class LevelScript : MonoBehaviour
 {
-    //public PlayerMovement playerScript;
-    public BackGroundType bgType;
-    
+    public PlayerMovement playerScript;
+
     [SerializeField] private GameObject Grasslands;
     [SerializeField] private GameObject Cavelands;
     [SerializeField] private GameObject Darkroom;
+    /*[SerializeField] private GameObject DoorToCave;
+    [SerializeField] private GameObject DoorToDarkroom;
+    [SerializeField] private GameObject DoorToGrassland;*/
     
     private Dictionary<BackGroundType, GameObject> backGroundDictionary;
-
-    public BackGroundType triggerBackground = BackGroundType.None;
     
-    // Start is called before the first frame update
+    public BackGroundType bgType;
+    public BackGroundType triggerBackground = BackGroundType.None;
+    public BackGroundType lastBackground;
+
+    
     void Start()
     {
         bgType = BackGroundType.GrassLands;
@@ -29,7 +35,7 @@ public class LevelScript : MonoBehaviour
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -49,7 +55,29 @@ public class LevelScript : MonoBehaviour
         backGroundDictionary[bgType].SetActive(true);
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
     }
+
+    public void SwapDoors()
+    {
+        switch (lastBackground)
+        {
+            case BackGroundType.GrassLands:
+                playerScript.LastDoorEntered.tag = "GrassDoor";
+                break;
+            //noch nicht komplett
+            case BackGroundType.CaveLands:
+                playerScript.LastDoorEntered.tag = "CaveDoor";
+                break;
+            case BackGroundType.DarkRoom:
+                playerScript.LastDoorEntered.tag = "DarkroomDoor";
+                break;
+            
+        }
+        //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
+        
+        //
+    }
 }
+
 public enum BackGroundType
 {
     None,

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     public LevelScript levelScript;
 
+    public GameObject LastDoorEntered;
     /*public BackGroundType bgType;
     
     [SerializeField] private GameObject Grasslands;
@@ -80,7 +82,9 @@ public class PlayerMovement : MonoBehaviour
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
+            levelScript.lastBackground = levelScript.bgType;
             levelScript.EnterDoor();
+            levelScript.SwapDoors();
         }
 
     }
@@ -111,11 +115,18 @@ public class PlayerMovement : MonoBehaviour
         
             if (other.gameObject.CompareTag("CaveDoor"))
             {
+                LastDoorEntered = other.gameObject;
                 levelScript.triggerBackground = BackGroundType.CaveLands;
             }
             else if (other.gameObject.CompareTag("DarkroomDoor"))
             {
+                LastDoorEntered = other.gameObject;
                 levelScript.triggerBackground = BackGroundType.DarkRoom;
+            }
+            else if (other.gameObject.CompareTag("GrassDoor"))
+            {
+                LastDoorEntered = other.gameObject;
+                levelScript.triggerBackground = BackGroundType.GrassLands;
             }
     }
 
