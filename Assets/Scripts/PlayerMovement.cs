@@ -20,27 +20,11 @@ public class PlayerMovement : MonoBehaviour
     public LevelScript levelScript;
 
     public GameObject LastDoorEntered;
-    /*public BackGroundType bgType;
-    
-    [SerializeField] private GameObject Grasslands;
-    [SerializeField] private GameObject Cavelands;
-    [SerializeField] private GameObject Darkroom;
-    private Dictionary<BackGroundType, GameObject> backGroundDictionary;
-
-    private BackGroundType triggerBackground = BackGroundType.None;*/
-
     private Animator anim;
     
     void Start()
     {
         anim = GetComponent<Animator>();
-        /*bgType = BackGroundType.GrassLands;
-        backGroundDictionary = new Dictionary<BackGroundType, GameObject>()
-        {
-            { BackGroundType.CaveLands, Cavelands },
-            { BackGroundType.DarkRoom, Darkroom },
-            { BackGroundType.GrassLands, Grasslands }
-        };*/
     }
 
 
@@ -128,21 +112,16 @@ public class PlayerMovement : MonoBehaviour
                 LastDoorEntered = other.gameObject;
                 levelScript.triggerBackground = BackGroundType.GrassLands;
             }
+            else if (other.gameObject.CompareTag("SpaceDoor"))
+            {
+                LastDoorEntered = other.gameObject;
+                levelScript.triggerBackground = BackGroundType.SpaceRoom;
+            }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         levelScript.triggerBackground = BackGroundType.None;
     }
-
-    
-    /*public enum BackGroundType
-    {
-        None,
-        GrassLands,
-        CaveLands,
-        DarkRoom
-    }*/
-    
     
 }

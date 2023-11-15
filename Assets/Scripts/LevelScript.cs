@@ -11,6 +11,7 @@ public class LevelScript : MonoBehaviour
     [SerializeField] private GameObject Grasslands;
     [SerializeField] private GameObject Cavelands;
     [SerializeField] private GameObject Darkroom;
+    [SerializeField] private GameObject Spaceroom;
     /*[SerializeField] private GameObject DoorToCave;
     [SerializeField] private GameObject DoorToDarkroom;
     [SerializeField] private GameObject DoorToGrassland;*/
@@ -29,7 +30,8 @@ public class LevelScript : MonoBehaviour
         {
             { BackGroundType.CaveLands, Cavelands },
             { BackGroundType.DarkRoom, Darkroom },
-            { BackGroundType.GrassLands, Grasslands }
+            { BackGroundType.GrassLands, Grasslands },
+            { BackGroundType.SpaceRoom, Spaceroom },
         };
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
@@ -70,6 +72,9 @@ public class LevelScript : MonoBehaviour
             case BackGroundType.DarkRoom:
                 playerScript.LastDoorEntered.tag = "DarkroomDoor";
                 break;
+            case BackGroundType.SpaceRoom:
+                playerScript.LastDoorEntered.tag = "SpaceDoor";
+                break;
             
         }
         //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
@@ -83,5 +88,6 @@ public enum BackGroundType
     None,
     GrassLands,
     CaveLands,
-    DarkRoom
+    DarkRoom,
+    SpaceRoom
 }

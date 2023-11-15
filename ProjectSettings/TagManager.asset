@@ -7,6 +7,7 @@ TagManager:
   - DarkroomDoor
   - CaveDoor
   - GrassDoor
+  - SpaceDoor
   layers:
   - Default
   - TransparentFX
