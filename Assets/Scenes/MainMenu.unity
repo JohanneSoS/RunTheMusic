@@ -839,5 +839,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5819304891742861901, guid: cc7e104bfd8dbea438d9ca2bb59e7409, type: 3}
+      propertyPath: MusicMenu.Guid.Data1
+      value: 1495317055
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819304891742861901, guid: cc7e104bfd8dbea438d9ca2bb59e7409, type: 3}
+      propertyPath: MusicMenu.Guid.Data2
+      value: 1200194981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819304891742861901, guid: cc7e104bfd8dbea438d9ca2bb59e7409, type: 3}
+      propertyPath: MusicMenu.Guid.Data3
+      value: 1359806388
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819304891742861901, guid: cc7e104bfd8dbea438d9ca2bb59e7409, type: 3}
+      propertyPath: MusicMenu.Guid.Data4
+      value: 378614146
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc7e104bfd8dbea438d9ca2bb59e7409, type: 3}

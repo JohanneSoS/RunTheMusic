@@ -63,6 +63,23 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsJumping", false);
         }
 
+        if (levelScript.bgType == BackGroundType.SpaceRoom)
+        {
+            anim.SetBool("IsSpaceShip", true);
+            rb.gravityScale = 0.5f;
+            rb.mass = 0.5f;
+            jumpingPower = 5.5f;
+            speed = 5f;
+        }
+        else
+        {
+            anim.SetBool("IsSpaceShip", false);
+            rb.gravityScale = 2f;
+            rb.mass = 1f;
+            jumpingPower = 10f;
+            speed = 6f;
+        }
+
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
@@ -116,6 +133,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 LastDoorEntered = other.gameObject;
                 levelScript.triggerBackground = BackGroundType.SpaceRoom;
+            }
+            else if (other.gameObject.CompareTag("AutomataDoor"))
+            {
+                LastDoorEntered = other.gameObject;
+                levelScript.triggerBackground = BackGroundType.AutomataRoom;
             }
     }
 

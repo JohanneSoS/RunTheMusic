@@ -8,6 +8,7 @@ public class SwapDoors : MonoBehaviour
     [SerializeField] private GameObject CaveDoor;
     [SerializeField] private GameObject DarkroomDoor;
     [SerializeField] private GameObject SpaceDoor;
+    [SerializeField] private GameObject AutomataDoor;
 
    // Update is called once per frame
     void Update()
@@ -19,6 +20,7 @@ public class SwapDoors : MonoBehaviour
                 CaveDoor.SetActive(false);
                 DarkroomDoor.SetActive(false);
                 SpaceDoor.SetActive(false);
+                AutomataDoor.SetActive(false);
                 break;
             
             case ("CaveDoor"):
@@ -26,6 +28,7 @@ public class SwapDoors : MonoBehaviour
                 CaveDoor.SetActive(true);
                 DarkroomDoor.SetActive(false);
                 SpaceDoor.SetActive(false);
+                AutomataDoor.SetActive(false);
                 break;
             
             case ("DarkroomDoor"):
@@ -33,6 +36,7 @@ public class SwapDoors : MonoBehaviour
                 CaveDoor.SetActive(false);
                 DarkroomDoor.SetActive(true);
                 SpaceDoor.SetActive(false);
+                AutomataDoor.SetActive(false);
                 break;
             
             case("SpaceDoor"):
@@ -40,6 +44,15 @@ public class SwapDoors : MonoBehaviour
                 CaveDoor.SetActive(false);
                 DarkroomDoor.SetActive(false);
                 SpaceDoor.SetActive(true);
+                AutomataDoor.SetActive(false);
+                break; 
+            
+            case("AutomataDoor"):
+                GrassDoor.SetActive(false);
+                CaveDoor.SetActive(false);
+                DarkroomDoor.SetActive(false);
+                SpaceDoor.SetActive(false);
+                AutomataDoor.SetActive(true);
                 break;
         } 
     }

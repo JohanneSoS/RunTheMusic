@@ -12,12 +12,17 @@ public class LevelScript : MonoBehaviour
     [SerializeField] private GameObject Cavelands;
     [SerializeField] private GameObject Darkroom;
     [SerializeField] private GameObject Spaceroom;
+    [SerializeField] private GameObject Automataroom;
     /*[SerializeField] private GameObject DoorToCave;
     [SerializeField] private GameObject DoorToDarkroom;
     [SerializeField] private GameObject DoorToGrassland;*/
+
+    [SerializeField] Animator plattformAnim;
+    [SerializeField] private List<Animator> plattforms;
+    private int animPlattform;
     
     private Dictionary<BackGroundType, GameObject> backGroundDictionary;
-    
+
     public BackGroundType bgType;
     public BackGroundType triggerBackground = BackGroundType.None;
     public BackGroundType lastBackground;
@@ -32,6 +37,7 @@ public class LevelScript : MonoBehaviour
             { BackGroundType.DarkRoom, Darkroom },
             { BackGroundType.GrassLands, Grasslands },
             { BackGroundType.SpaceRoom, Spaceroom },
+            { BackGroundType.AutomataRoom, Automataroom },
         };
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
@@ -40,7 +46,39 @@ public class LevelScript : MonoBehaviour
     
     void Update()
     {
-        
+        switch (bgType)
+        {
+            case BackGroundType.GrassLands:
+                foreach (var plattformAnim in plattforms)
+                {
+                    plattformAnim.SetInteger("plattform", 1);
+                }
+                break;
+            case BackGroundType.CaveLands:
+                foreach (var plattformAnim in plattforms)
+                {
+                    plattformAnim.SetInteger("plattform", 1);
+                }
+                break;
+            case BackGroundType.DarkRoom:
+                foreach (var plattformAnim in plattforms)
+                {
+                    plattformAnim.SetInteger("plattform", 3);
+                }
+                break;
+            case BackGroundType.SpaceRoom:
+                foreach (var plattformAnim in plattforms)
+                {
+                    plattformAnim.SetInteger("plattform", 4);
+                }
+                break;
+            case BackGroundType.AutomataRoom:
+                foreach (var plattformAnim in plattforms)
+                {
+                    plattformAnim.SetInteger("plattform", 5);
+                }
+                break;
+        }
     }
 
     public void EnterDoor()
@@ -75,6 +113,9 @@ public class LevelScript : MonoBehaviour
             case BackGroundType.SpaceRoom:
                 playerScript.LastDoorEntered.tag = "SpaceDoor";
                 break;
+            case BackGroundType.AutomataRoom:
+                playerScript.LastDoorEntered.tag = "AutomataDoor";
+                break;
             
         }
         //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
@@ -89,5 +130,6 @@ public enum BackGroundType
     GrassLands,
     CaveLands,
     DarkRoom,
-    SpaceRoom
+    SpaceRoom,
+    AutomataRoom
 }
