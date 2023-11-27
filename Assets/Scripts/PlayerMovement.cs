@@ -80,6 +80,15 @@ public class PlayerMovement : MonoBehaviour
             speed = 6f;
         }
 
+        if (levelScript.bgType == BackGroundType.AutomataRoom)
+        {
+            anim.SetBool("IsRobot", true);
+        }
+        else
+        {
+            anim.SetBool("IsRobot", false);
+        }
+
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
@@ -97,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.4f, groundLayer);
     }
     
     private void Flip()
