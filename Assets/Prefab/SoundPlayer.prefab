@@ -65,6 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5431904266cbb4f89b52d1892775a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 6886553197878074057, guid: 815e63a0317964844ba6cacb23cf8214, type: 3}
+  levelScript: {fileID: 0}
   EnterDoorFromGrass:
     Guid:
       Data1: 0

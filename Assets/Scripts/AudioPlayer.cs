@@ -7,7 +7,9 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioPlayer : MonoBehaviour
 {
-   public LevelScript levelScript;
+   public BackGroundType bgMusicType;
+   public static AudioPlayer Instance;
+   
    [SerializeField] private EventReference EnterDoorFromGrass;
    [SerializeField] private EventReference EnterDoorFromCave;
    [SerializeField] private EventReference EnterDoorFromDark;
@@ -29,6 +31,20 @@ public class AudioPlayer : MonoBehaviour
    private EventInstance _musicInstance;
    
    
+   private void Awake()
+   {
+      if (Instance == null)
+      {
+         Instance = this;
+         DontDestroyOnLoad(gameObject);
+      }
+      else
+      {
+         Destroy(gameObject);
+      }
+   }
+
+  
    //General SFX
    
    public void PlayButtonClickSFX()
@@ -78,7 +94,7 @@ public class AudioPlayer : MonoBehaviour
    
    //Music Play
    
-   public void PlayMusicMainMenu()
+   public void PlayMenuMusic()
    {
       _musicInstance.stop(STOP_MODE.IMMEDIATE);
       _musicInstance = RuntimeManager.CreateInstance(MusicMainMenu);
@@ -88,7 +104,8 @@ public class AudioPlayer : MonoBehaviour
    public void PlayLevelMusic()
    {
       _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      switch (levelScript.bgType)
+      
+      switch (bgMusicType)
       {
          case BackGroundType.GrassLands:
             _musicInstance = RuntimeManager.CreateInstance(MusicGrass);
@@ -110,5 +127,5 @@ public class AudioPlayer : MonoBehaviour
       }
       _musicInstance.start();
    }
-   
+
 }

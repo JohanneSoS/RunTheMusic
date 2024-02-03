@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public SoundScript SoundPlayerScript;
+    //public AudioPlayer AudioPlayerScript;
    
     void Start()
     {
-        SoundPlayerScript.PlayMainMusic();
+        AudioPlayer.Instance.PlayMenuMusic();
     }
     
     public void PlayGame()

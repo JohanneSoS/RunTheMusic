@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using FMOD;
 using FMOD.Studio;
 using UnityEngine;
@@ -39,8 +40,8 @@ public class LevelScript : MonoBehaviour
             { BackGroundType.SpaceRoom, Spaceroom },
             { BackGroundType.AutomataRoom, Automataroom },
         };
-        backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Stop();
-        backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        AudioPlayer.Instance.bgMusicType = bgType;
+        AudioPlayer.Instance.PlayLevelMusic();
     }
 
     
@@ -79,6 +80,8 @@ public class LevelScript : MonoBehaviour
                 }
                 break;
         }
+
+        AudioPlayer.Instance.bgMusicType = bgType;
     }
 
     public void EnterDoor()
@@ -89,11 +92,11 @@ public class LevelScript : MonoBehaviour
         foreach (var backGroundKeyValue in backGroundDictionary)
         {
             backGroundKeyValue.Value.SetActive(false);
-            backGroundKeyValue.Value.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
+            //backGroundKeyValue.Value.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
 
         backGroundDictionary[bgType].SetActive(true);
-        backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        //backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
           
     }
 

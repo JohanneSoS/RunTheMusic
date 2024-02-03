@@ -100,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
             {case BackGroundType.GrassLands:}*/
             Debug.Log("Play Entry Sound");
             StartCoroutine(EnterRoom());
-            //Invoke ("EnterRoom", 4);
             Time.timeScale = 0f;
         }
     }
@@ -112,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         levelScript.EnterDoor();
         levelScript.SwapDoors();
         Debug.Log("Resume");
+        AudioPlayer.Instance.PlayLevelMusic();
     }
 
     private void FixedUpdate()
