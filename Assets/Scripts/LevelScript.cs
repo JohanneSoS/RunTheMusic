@@ -83,7 +83,7 @@ public class LevelScript : MonoBehaviour
 
     public void EnterDoor()
     {
-        bgType = triggerBackground;
+        //bgType = triggerBackground;
         triggerBackground = BackGroundType.None;
 
         foreach (var backGroundKeyValue in backGroundDictionary)
@@ -91,9 +91,10 @@ public class LevelScript : MonoBehaviour
             backGroundKeyValue.Value.SetActive(false);
             backGroundKeyValue.Value.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
-            
+
         backGroundDictionary[bgType].SetActive(true);
         backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
+          
     }
 
     public void SwapDoors()
@@ -122,6 +123,7 @@ public class LevelScript : MonoBehaviour
         
         //
     }
+   
 }
 
 public enum BackGroundType

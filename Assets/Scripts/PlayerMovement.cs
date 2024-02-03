@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -93,10 +93,25 @@ public class PlayerMovement : MonoBehaviour
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
             levelScript.lastBackground = levelScript.bgType;
-            levelScript.EnterDoor();
-            levelScript.SwapDoors();
+            levelScript.bgType = levelScript.triggerBackground;
+            //make the Player freeze midair, so he waits for the entire 4secs and stays on the colider
+            
+            /*switch (levelScript.lastBackground)
+            {case BackGroundType.GrassLands:}*/
+            Debug.Log("Play Entry Sound");
+            StartCoroutine(EnterRoom());
+            //Invoke ("EnterRoom", 4);
+            Time.timeScale = 0f;
         }
+    }
 
+    IEnumerator EnterRoom()
+    {
+        yield return new WaitForSecondsRealtime(4);
+        Time.timeScale = 1f;
+        levelScript.EnterDoor();
+        levelScript.SwapDoors();
+        Debug.Log("Resume");
     }
 
     private void FixedUpdate()
@@ -109,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.4f, groundLayer);
     }
     
-    private void Flip()
+    private void Flip() 
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
