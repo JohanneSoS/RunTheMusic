@@ -7,6 +7,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioPlayer : MonoBehaviour
 {
+   public LevelScript levelScript;
    [SerializeField] private EventReference EnterDoorFromGrass;
    [SerializeField] private EventReference EnterDoorFromCave;
    [SerializeField] private EventReference EnterDoorFromDark;
@@ -83,39 +84,30 @@ public class AudioPlayer : MonoBehaviour
       _musicInstance = RuntimeManager.CreateInstance(MusicMainMenu);
       _musicInstance.start();
    }
-   
-   public void PlayMusicGrass()
+
+   public void PlayLevelMusic()
    {
       _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      _musicInstance = RuntimeManager.CreateInstance(MusicGrass);
-      _musicInstance.start();
-   }
-   
-   public void PlayMusicCave()
-   {
-      _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      _musicInstance = RuntimeManager.CreateInstance(MusicCave);
-      _musicInstance.start();
-   }
-   
-   public void PlayMusicDark()
-   {
-      _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      _musicInstance = RuntimeManager.CreateInstance(MusicDark);
-      _musicInstance.start();
-   }
-   
-   public void PlayMusicSpace()
-   {
-      _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      _musicInstance = RuntimeManager.CreateInstance(MusicSpace);
-      _musicInstance.start();
-   }
-   
-   public void PlayMusicAutomata()
-   {
-      _musicInstance.stop(STOP_MODE.IMMEDIATE);
-      _musicInstance = RuntimeManager.CreateInstance(MusicAutomata);
+      switch (levelScript.bgType)
+      {
+         case BackGroundType.GrassLands:
+            _musicInstance = RuntimeManager.CreateInstance(MusicGrass);
+            break;
+            
+         case BackGroundType.CaveLands:
+            _musicInstance = RuntimeManager.CreateInstance(MusicCave);
+            break;
+         
+         case BackGroundType.DarkRoom:
+            _musicInstance = RuntimeManager.CreateInstance(MusicDark);
+            break;
+         case BackGroundType.SpaceRoom:
+            _musicInstance = RuntimeManager.CreateInstance(MusicSpace);
+            break;
+         case BackGroundType.AutomataRoom:
+            _musicInstance = RuntimeManager.CreateInstance(MusicAutomata);
+            break;
+      }
       _musicInstance.start();
    }
    
