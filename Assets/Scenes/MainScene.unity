@@ -1795,6 +1795,148 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &418254159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418254161}
+  - component: {fileID: 418254160}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &418254160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418254159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5431904266cbb4f89b52d1892775a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnterDoorFromGrass:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromCave:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromDark:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromSpace:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromAutomata:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ButtonClickSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OpenDoorSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  CloseDoorSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  MusicMainMenu:
+    Guid:
+      Data1: 1495317055
+      Data2: 1200194981
+      Data3: 1359806388
+      Data4: 378614146
+    Path: event:/Music/Main Menu
+  MusicGrass:
+    Guid:
+      Data1: 301863381
+      Data2: 1268963222
+      Data3: -138496350
+      Data4: -317733753
+    Path: event:/Music/Grasslands
+  MusicCave:
+    Guid:
+      Data1: -81614445
+      Data2: 1131490725
+      Data3: 184345481
+      Data4: -799619326
+    Path: event:/Music/Ghibli
+  MusicDark:
+    Guid:
+      Data1: -2039872985
+      Data2: 1326465611
+      Data3: 1675013785
+      Data4: 767969561
+    Path: event:/Music/Deescelator
+  MusicSpace:
+    Guid:
+      Data1: -1881364752
+      Data2: 1239553340
+      Data3: -1674626156
+      Data4: -239283200
+    Path: event:/Music/Aural Space
+  MusicAutomata:
+    Guid:
+      Data1: -508054655
+      Data2: 1159969060
+      Data3: -1460203375
+      Data4: 2090065187
+    Path: event:/Music/Automata Escape
+--- !u!4 &418254161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418254159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.291237, y: -0.7538279, z: 473.63428}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &443737629 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5008965956815285311, guid: 0475e0761bcead14fb65be13096c2fee, type: 3}

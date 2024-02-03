@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5819304891742861891}
   - component: {fileID: 5819304891742861890}
-  - component: {fileID: 5819304891742861901}
+  - component: {fileID: 3561975637741853437}
   m_Layer: 0
   m_Name: SoundPlayer
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   - Master.strings
   CollisionTag: 
   PreloadSamples: 0
---- !u!114 &5819304891742861901
+--- !u!114 &3561975637741853437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,20 +62,104 @@ MonoBehaviour:
   m_GameObject: {fileID: 5819304891742861900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfee00db2d8f63442a4d6afabaad2b5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f5431904266cbb4f89b52d1892775a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicMenu:
+  EnterDoorFromGrass:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromCave:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromDark:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromSpace:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnterDoorFromAutomata:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ButtonClickSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OpenDoorSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  CloseDoorSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  MusicMainMenu:
+    Guid:
+      Data1: 1495317055
+      Data2: 1200194981
+      Data3: 1359806388
+      Data4: 378614146
+    Path: event:/Music/Main Menu
+  MusicGrass:
+    Guid:
+      Data1: 301863381
+      Data2: 1268963222
+      Data3: -138496350
+      Data4: -317733753
+    Path: event:/Music/Grasslands
+  MusicCave:
     Guid:
       Data1: -81614445
       Data2: 1131490725
       Data3: 184345481
       Data4: -799619326
-    Path: event:/Music/Main Menu
-  MusicLevel:
+    Path: event:/Music/Ghibli
+  MusicDark:
     Guid:
-      Data1: -1095559334
-      Data2: 1175529182
-      Data3: 623232392
-      Data4: 2062612784
-    Path: event:/Music/Ingame Music
+      Data1: -2039872985
+      Data2: 1326465611
+      Data3: 1675013785
+      Data4: 767969561
+    Path: event:/Music/Deescelator
+  MusicSpace:
+    Guid:
+      Data1: -1881364752
+      Data2: 1239553340
+      Data3: -1674626156
+      Data4: -239283200
+    Path: event:/Music/Aural Space
+  MusicAutomata:
+    Guid:
+      Data1: -508054655
+      Data2: 1159969060
+      Data3: -1460203375
+      Data4: 2090065187
+    Path: event:/Music/Automata Escape
