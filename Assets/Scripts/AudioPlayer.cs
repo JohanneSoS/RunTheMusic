@@ -1,4 +1,5 @@
 using System;
+using System.Resources;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class AudioPlayer : MonoBehaviour
    [SerializeField] private EventReference EnterDoorFromDark;
    [SerializeField] private EventReference EnterDoorFromSpace;
    [SerializeField] private EventReference EnterDoorFromAutomata;
+
+   [SerializeField] private EventReference ExitDoorInGrass;
+   [SerializeField] private EventReference ExitDoorInCave;
+   [SerializeField] private EventReference ExitDoorInDark;
+   [SerializeField] private EventReference ExitDoorInSpace;
+   [SerializeField] private EventReference ExitDoorInAutomata;
    
    [SerializeField] private EventReference ButtonClickSFX;
    [SerializeField] private EventReference OpenDoorSFX;
@@ -44,7 +51,12 @@ public class AudioPlayer : MonoBehaviour
       }
    }
 
-  
+
+   public void StopMusic()
+   {
+      _musicInstance.stop(STOP_MODE.IMMEDIATE);
+   }
+   
    //General SFX
    
    public void PlayButtonClickSFX()
@@ -52,44 +64,55 @@ public class AudioPlayer : MonoBehaviour
       RuntimeManager.PlayOneShot(ButtonClickSFX);
    }
    
-   public void PlayOpenDoorSFX()
+
+
+   public void PlayEnterDoor ()
    {
       RuntimeManager.PlayOneShot(OpenDoorSFX);
+      
+      switch (bgMusicType)
+      {
+         case BackGroundType.GrassLands:
+            RuntimeManager.PlayOneShot(EnterDoorFromGrass);
+            break;
+         case BackGroundType.CaveLands:
+            RuntimeManager.PlayOneShot(EnterDoorFromCave);
+            break;
+         case BackGroundType.DarkRoom:
+            RuntimeManager.PlayOneShot(EnterDoorFromDark);
+            break;
+         case BackGroundType.SpaceRoom:
+            RuntimeManager.PlayOneShot(EnterDoorFromSpace);
+            break;
+         case BackGroundType.AutomataRoom:
+            RuntimeManager.PlayOneShot(EnterDoorFromAutomata);
+            break;
+      }
    }
-   
-   public void PlayCloseDoorSFX()
+
+   public void PlayExitDoor()
    {
       RuntimeManager.PlayOneShot(CloseDoorSFX);
+      
+      switch (bgMusicType)
+      {
+         case BackGroundType.GrassLands:
+            RuntimeManager.PlayOneShot(ExitDoorInGrass);
+            break;
+         case BackGroundType.CaveLands:
+            RuntimeManager.PlayOneShot(ExitDoorInCave);
+            break;
+         case BackGroundType.DarkRoom:
+            RuntimeManager.PlayOneShot(ExitDoorInDark);
+            break;
+         case BackGroundType.SpaceRoom:
+            RuntimeManager.PlayOneShot(ExitDoorInSpace);
+            break;
+         case BackGroundType.AutomataRoom:
+            RuntimeManager.PlayOneShot(ExitDoorInAutomata);
+            break;
+      }
    }
-   
-   
-   //Music Oneshots
-
-   public void PlayEnterDoorFromGrass()
-   {
-      RuntimeManager.PlayOneShot(EnterDoorFromGrass);
-   }
-   
-   public void PlayEnterDoorFromCave()
-   {
-      RuntimeManager.PlayOneShot(EnterDoorFromCave);
-   }
-   
-   public void PlayEnterDoorFromDark()
-   {
-      RuntimeManager.PlayOneShot(EnterDoorFromDark);
-   }
-   
-   public void PlayEnterDoorFromSpace()
-   {
-      RuntimeManager.PlayOneShot(EnterDoorFromSpace);
-   }
-   
-   public void PlayEnterDoorFromAutomata()
-   {
-      RuntimeManager.PlayOneShot(EnterDoorFromAutomata);
-   }
-   
    
    
    //Music Play

@@ -65,64 +65,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5431904266cbb4f89b52d1892775a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 6886553197878074057, guid: 815e63a0317964844ba6cacb23cf8214, type: 3}
-  levelScript: {fileID: 0}
+  bgMusicType: 0
   EnterDoorFromGrass:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 472088840
+      Data2: 1124549838
+      Data3: -1796497757
+      Data4: -834421244
+    Path: event:/Door Entry (last door)/Enter Door from Grass
   EnterDoorFromCave:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 194559790
+      Data2: 1305688554
+      Data3: 1998689973
+      Data4: -948852798
+    Path: event:/Door Entry (last door)/Enter Door from Cave
   EnterDoorFromDark:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 670803440
+      Data2: 1210595357
+      Data3: 1409837443
+      Data4: 1525351674
+    Path: event:/Door Entry (last door)/Enter Door from Darkroom
   EnterDoorFromSpace:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 689429390
+      Data2: 1156640679
+      Data3: 1439085499
+      Data4: 1757132915
+    Path: event:/Door Entry (last door)/Enter Door from Space
   EnterDoorFromAutomata:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 171122008
+      Data2: 1209041964
+      Data3: 1897349293
+      Data4: 781253102
+    Path: event:/Door Entry (last door)/Enter Door from Automata
+  ExitDoorInGrass:
+    Guid:
+      Data1: 508958961
+      Data2: 1149727452
+      Data3: 673079998
+      Data4: -145333644
+    Path: event:/Door Exit (new door)/New Door in Grass
+  ExitDoorInCave:
+    Guid:
+      Data1: 316341816
+      Data2: 1272730139
+      Data3: -1105526347
+      Data4: 1951570629
+    Path: event:/Door Exit (new door)/New Door in Cave
+  ExitDoorInDark:
+    Guid:
+      Data1: -1240240745
+      Data2: 1340456024
+      Data3: 714074804
+      Data4: 566090920
+    Path: event:/Door Exit (new door)/New Door in Darkroom
+  ExitDoorInSpace:
+    Guid:
+      Data1: -1254240318
+      Data2: 1328689388
+      Data3: -1318708047
+      Data4: 312415749
+    Path: event:/Door Exit (new door)/New Door in Space
+  ExitDoorInAutomata:
+    Guid:
+      Data1: 1854135578
+      Data2: 1239658694
+      Data3: 1093833917
+      Data4: -850654389
+    Path: event:/Door Exit (new door)/New Door in Automata
   ButtonClickSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -676996070
+      Data2: 1264989184
+      Data3: -1133515365
+      Data4: 649567946
+    Path: event:/SFX neutral/Door Open Squeak SFX
   OpenDoorSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -676996070
+      Data2: 1264989184
+      Data3: -1133515365
+      Data4: 649567946
+    Path: event:/SFX neutral/Door Open Squeak SFX
   CloseDoorSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1101858343
+      Data2: 1231396013
+      Data3: -1423615841
+      Data4: -981904892
+    Path: event:/SFX neutral/Door Close SFX
   MusicMainMenu:
     Guid:
       Data1: 1495317055
@@ -132,36 +166,36 @@ MonoBehaviour:
     Path: event:/Music/Main Menu
   MusicGrass:
     Guid:
-      Data1: 301863381
-      Data2: 1268963222
-      Data3: -138496350
-      Data4: -317733753
-    Path: event:/Music/Grasslands
+      Data1: 1725039036
+      Data2: 1294555644
+      Data3: 1397498545
+      Data4: 1208737995
+    Path: event:/Music/Grasslands simple
   MusicCave:
     Guid:
-      Data1: -81614445
-      Data2: 1131490725
-      Data3: 184345481
-      Data4: -799619326
-    Path: event:/Music/Ghibli
+      Data1: 1392129805
+      Data2: 1255229181
+      Data3: 858698882
+      Data4: -60398091
+    Path: event:/Music/Ghibli simple
   MusicDark:
     Guid:
-      Data1: -2039872985
-      Data2: 1326465611
-      Data3: 1675013785
-      Data4: 767969561
-    Path: event:/Music/Deescelator
+      Data1: 87598881
+      Data2: 1099516080
+      Data3: -1086045537
+      Data4: -1673115184
+    Path: event:/Music/Deescelator simple
   MusicSpace:
     Guid:
-      Data1: -1881364752
-      Data2: 1239553340
-      Data3: -1674626156
-      Data4: -239283200
-    Path: event:/Music/Aural Space
+      Data1: 1253385507
+      Data2: 1107245114
+      Data3: 1179652793
+      Data4: -711050120
+    Path: event:/Music/Aural Space simple
   MusicAutomata:
     Guid:
-      Data1: -508054655
-      Data2: 1159969060
-      Data3: -1460203375
-      Data4: 2090065187
-    Path: event:/Music/Automata Escape
+      Data1: 550343661
+      Data2: 1278489474
+      Data3: 1712751789
+      Data4: -1942488580
+    Path: event:/Music/Automata Escape simple

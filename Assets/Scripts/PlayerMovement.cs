@@ -98,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
             
             /*switch (levelScript.lastBackground)
             {case BackGroundType.GrassLands:}*/
-            Debug.Log("Play Entry Sound");
+            AudioPlayer.Instance.StopMusic();
+            AudioPlayer.Instance.PlayEnterDoor();
             StartCoroutine(EnterRoom());
             Time.timeScale = 0f;
         }
@@ -106,11 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator EnterRoom()
     {
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1f;
         levelScript.EnterDoor();
         levelScript.SwapDoors();
         Debug.Log("Resume");
+        AudioPlayer.Instance.PlayExitDoor();
+        yield return new WaitForSecondsRealtime(1);
         AudioPlayer.Instance.PlayLevelMusic();
     }
 
