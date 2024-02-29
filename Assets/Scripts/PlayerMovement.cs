@@ -94,10 +94,6 @@ public class PlayerMovement : MonoBehaviour
         {
             levelScript.lastBackground = levelScript.bgType;
             levelScript.bgType = levelScript.triggerBackground;
-            //make the Player freeze midair, so he waits for the entire 4secs and stays on the colider
-            
-            /*switch (levelScript.lastBackground)
-            {case BackGroundType.GrassLands:}*/
             AudioPlayer.Instance.StopMusic();
             AudioPlayer.Instance.PlayEnterDoor();
             StartCoroutine(EnterRoom());
