@@ -8,6 +8,7 @@ using UnityEngine;
 public class LevelScript : MonoBehaviour
 {
     public PlayerMovement playerScript;
+    //public Blackscreen blackScreenScript;
 
     [SerializeField] private GameObject Grasslands;
     [SerializeField] private GameObject Cavelands;

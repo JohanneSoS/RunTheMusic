@@ -18,9 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     public LevelScript levelScript;
+    public Blackscreen blackScreenScript;
 
     public GameObject LastDoorEntered;
     private Animator anim;
+
+    private bool lockedPlayerMovement;
     
     void Start()
     {
@@ -89,15 +92,30 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsRobot", false);
         }
 
+        if (levelScript.triggerBackground != BackGroundType.None)
+        {
+            blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.Cinematic;
+            blackScreenScript.ChangeBlackScreenState();
+        }
+
+        else if (lockedPlayerMovement == false)
+        {
+            blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.NoScreen;
+            blackScreenScript.ChangeBlackScreenState();
+        }
+        
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
+            //blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.BlackScreen;
+            //blackScreenScript.ChangeBlackScreenState();
             levelScript.lastBackground = levelScript.bgType;
             levelScript.bgType = levelScript.triggerBackground;
             AudioPlayer.Instance.StopMusic();
             AudioPlayer.Instance.PlayEnterDoor();
             StartCoroutine(EnterRoom());
             Time.timeScale = 0f;
+            lockedPlayerMovement = true;
         }
     }
 
@@ -105,11 +123,14 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1f;
+        lockedPlayerMovement = false;
         levelScript.EnterDoor();
         levelScript.SwapDoors();
         Debug.Log("Resume");
         AudioPlayer.Instance.PlayExitDoor();
         yield return new WaitForSecondsRealtime(1);
+        blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.NoScreen;
+        blackScreenScript.ChangeBlackScreenState();
         AudioPlayer.Instance.PlayLevelMusic();
     }
 
