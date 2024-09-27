@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5549881463255159189, guid: 442dce5685a02aa48bf6ac12ce6ecb92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5549881463255159191, guid: 442dce5685a02aa48bf6ac12ce6ecb92, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -233,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 1567134284398781924, guid: ed7532df613f7d745bd457bd051ebcb9, type: 3}
       propertyPath: m_Name
       value: AutomataDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567134284398781924, guid: ed7532df613f7d745bd457bd051ebcb9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1567134284398781927, guid: ed7532df613f7d745bd457bd051ebcb9, type: 3}
       propertyPath: m_RootOrder
@@ -301,8 +309,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: CaveDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310121, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4199488797144310122, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310122, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310122, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4199488797144310122, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
@@ -343,6 +363,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199488797144310122, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
+      propertyPath: m_SpriteSortPoint
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4199488797144310123, guid: c35def027e8628f4e9740357f06b80d6, type: 3}
