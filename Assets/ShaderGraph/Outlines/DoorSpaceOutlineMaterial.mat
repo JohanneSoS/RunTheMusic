@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DoorSpaceOutlineMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 8ffff6c2d733f1844acc636379f8b2e1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a23c0ee915108c24fba664adf917d8cf, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
