@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     public LevelScript levelScript;
     public Blackscreen blackScreenScript;
+    public SwapDoors[] swapDoorsScripts;
 
     public GameObject LastDoorEntered;
     private Animator anim;
@@ -94,12 +95,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (levelScript.triggerBackground != BackGroundType.None)
         {
+            foreach (var swapDoor in swapDoorsScripts)
+            {
+                swapDoor.ActivateOutline(levelScript.triggerBackground);
+            }
             blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.Cinematic;
             blackScreenScript.ChangeBlackScreenState();
         }
 
         else if (lockedPlayerMovement == false)
         {
+            foreach (var swapDoor in swapDoorsScripts)
+            {
+                swapDoor.DeactivateAllOutlines();
+            } 
             blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.NoScreen;
             blackScreenScript.ChangeBlackScreenState();
         }

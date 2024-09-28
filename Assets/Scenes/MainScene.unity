@@ -662,6 +662,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98292977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6595761123090723768, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
+  m_PrefabInstance: {fileID: 1700645510}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50c49aba8ce79841940f256edbbcae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &106262303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5714,6 +5725,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1547681040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6595761123090723768, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
+  m_PrefabInstance: {fileID: 2978918740748719795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50c49aba8ce79841940f256edbbcae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1595840813
 GameObject:
   m_ObjectHideFlags: 0
@@ -7186,6 +7208,11 @@ MonoBehaviour:
     m_Bits: 64
   levelScript: {fileID: 1403793400}
   blackScreenScript: {fileID: 179020109}
+  swapDoorsScripts:
+  - {fileID: 1547681040}
+  - {fileID: 2051501190}
+  - {fileID: 98292977}
+  - {fileID: 2120381792}
   LastDoorEntered: {fileID: 0}
 --- !u!50 &1981947444
 Rigidbody2D:
@@ -7425,6 +7452,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2051501190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6595761123090723768, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
+  m_PrefabInstance: {fileID: 1470057830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50c49aba8ce79841940f256edbbcae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2053538044
 GameObject:
   m_ObjectHideFlags: 0
@@ -7526,6 +7564,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2120381792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6595761123090723768, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
+  m_PrefabInstance: {fileID: 337458172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50c49aba8ce79841940f256edbbcae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2284319224816928038
 PrefabInstance:
   m_ObjectHideFlags: 0
