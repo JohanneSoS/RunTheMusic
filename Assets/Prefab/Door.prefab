@@ -81,6 +81,7 @@ MonoBehaviour:
   DarkroomDoor: {fileID: 6595761122612703254}
   SpaceDoor: {fileID: 6595761124396786728}
   AutomataDoor: {fileID: 6595761124126279481}
+  selectedDoorMaterial: {fileID: 0}
 --- !u!1001 &715737979916722637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -412,6 +413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkroomDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 2857288935176393908, guid: a0d78d289d563214085bd0b42d2da75d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2857288935176393909, guid: a0d78d289d563214085bd0b42d2da75d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -455,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 2857288935176393909, guid: a0d78d289d563214085bd0b42d2da75d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857288935176393909, guid: a0d78d289d563214085bd0b42d2da75d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d78d289d563214085bd0b42d2da75d, type: 3}
