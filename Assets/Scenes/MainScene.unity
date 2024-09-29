@@ -1573,14 +1573,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.725
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.075
-      objectReference: {fileID: 0}
     - target: {fileID: 6595761123090723763, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
       propertyPath: m_Name
       value: DoorD
@@ -5915,14 +5907,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.725
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.075
-      objectReference: {fileID: 0}
     - target: {fileID: 6595761123090723763, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
       propertyPath: m_Name
       value: DoorC
@@ -7779,14 +7763,6 @@ PrefabInstance:
     - target: {fileID: 6595761122903674793, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.725
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595761122903674794, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.075
       objectReference: {fileID: 0}
     - target: {fileID: 6595761123090723763, guid: 6cbbb8c1017e132478c967cc92734a15, type: 3}
       propertyPath: m_Name

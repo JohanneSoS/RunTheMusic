@@ -28,7 +28,6 @@ public class LevelScript : MonoBehaviour
     public BackGroundType bgType;
     public BackGroundType triggerBackground = BackGroundType.None;
     public BackGroundType lastBackground;
-
     
     void Start()
     {
@@ -44,7 +43,6 @@ public class LevelScript : MonoBehaviour
         AudioPlayer.Instance.bgMusicType = bgType;
         AudioPlayer.Instance.PlayLevelMusic();
     }
-
     
     void Update()
     {
@@ -98,7 +96,6 @@ public class LevelScript : MonoBehaviour
 
         backGroundDictionary[bgType].SetActive(true);
         //backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
-          
     }
 
     public void SwapDoors()
@@ -124,10 +121,7 @@ public class LevelScript : MonoBehaviour
             
         }
         //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
-        
-        //
     }
-   
 }
 
 public enum BackGroundType

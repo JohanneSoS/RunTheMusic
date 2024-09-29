@@ -29,15 +29,14 @@ public class PlayerMovement : MonoBehaviour
     public SwapDoors[] swapDoorsScripts;
 
     public GameObject LastDoorEntered;
+    
     private Animator anim;
-
     private bool lockedPlayerMovement;
     
     void Start()
     {
         anim = GetComponent<Animator>();
     }
-
 
     void Update()
     {
@@ -108,26 +107,15 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("IsRobot", false);
         }
-
-        if (levelScript.triggerBackground != BackGroundType.None)
-        {
-            foreach (var swapDoor in swapDoorsScripts)
-            {
-                swapDoor.ActivateOutline(levelScript.triggerBackground);
-            }
-            blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.Cinematic;
-            blackScreenScript.ChangeBlackScreenState();
-        }
-
-        else if (lockedPlayerMovement == false)
-        {
-            foreach (var swapDoor in swapDoorsScripts)
-            {
-                swapDoor.DeactivateAllOutlines();
-            } 
-            blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.NoScreen;
-            blackScreenScript.ChangeBlackScreenState();
-        }
+        
+        // if (levelScript.triggerBackground == BackGroundType.None && lockedPlayerMovement == false)
+        // {
+        //     foreach (var swapDoor in swapDoorsScripts)
+        //     {
+        //         swapDoor.DeactivateAllOutlines();
+        //     } 
+        //     blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
+        // }
         
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
@@ -151,11 +139,9 @@ public class PlayerMovement : MonoBehaviour
         lockedPlayerMovement = false;
         levelScript.EnterDoor();
         levelScript.SwapDoors();
-        Debug.Log("Resume");
         AudioPlayer.Instance.PlayExitDoor();
         yield return new WaitForSecondsRealtime(1);
-        blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.NoScreen;
-        blackScreenScript.ChangeBlackScreenState();
+        blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
         AudioPlayer.Instance.PlayLevelMusic();
     }
 
@@ -203,37 +189,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-            if (other.gameObject.CompareTag("CaveDoor"))
-            {
-                LastDoorEntered = other.gameObject;
-                levelScript.triggerBackground = BackGroundType.CaveLands;
-            }
-            else if (other.gameObject.CompareTag("DarkroomDoor"))
-            {
-                LastDoorEntered = other.gameObject;
-                levelScript.triggerBackground = BackGroundType.DarkRoom;
-            }
-            else if (other.gameObject.CompareTag("GrassDoor"))
-            {
-                LastDoorEntered = other.gameObject;
-                levelScript.triggerBackground = BackGroundType.GrassLands;
-            }
-            else if (other.gameObject.CompareTag("SpaceDoor"))
-            {
-                LastDoorEntered = other.gameObject;
-                levelScript.triggerBackground = BackGroundType.SpaceRoom;
-            }
-            else if (other.gameObject.CompareTag("AutomataDoor"))
-            {
-                LastDoorEntered = other.gameObject;
-                levelScript.triggerBackground = BackGroundType.AutomataRoom;
-            }
+        if (other.gameObject.TryGetComponent<SwapDoors>(out var door))
+        {
+            levelScript.triggerBackground = GetBackGroundTypeFromDoorTag(other.gameObject.tag);
+            EnterDoorTriggerState(door);
+            LastDoorEntered = other.gameObject;
+        }
+    }
+
+    private void EnterDoorTriggerState(SwapDoors door)
+    {
+        door.ActivateOutline(levelScript.triggerBackground);
+    
+        blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.Cinematic);
+    }
+
+    private BackGroundType GetBackGroundTypeFromDoorTag(string doorTag)
+    {
+        return doorTag switch
+        {
+            "CaveDoor" => BackGroundType.CaveLands,
+            "DarkroomDoor" => BackGroundType.DarkRoom,
+            "GrassDoor" => BackGroundType.GrassLands,
+            "SpaceDoor" => BackGroundType.SpaceRoom,
+            "AutomataDoor" => BackGroundType.AutomataRoom,
+            _ => throw new ArgumentException("BackgroundType does not exist")
+        };
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        levelScript.triggerBackground = BackGroundType.None;
+        if (other.TryGetComponent<SwapDoors>(out var door))
+        {
+            levelScript.triggerBackground = BackGroundType.None;
+            door.DeactivateAllOutlines();
+            
+            blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
+        }
     }
-    
 }

@@ -25,13 +25,13 @@ public class Blackscreen : MonoBehaviour
 
     void Start()
     {
-        BlackScreen = BlackScreenState.NoScreen;
-        ChangeBlackScreenState();
+        ChangeBlackScreenState(BlackScreenState.NoScreen);
     }
 
-    public void ChangeBlackScreenState()
+    public void ChangeBlackScreenState(BlackScreenState newState)
     {
-        ResetCanvas();
+        //ResetCanvas();
+        BlackScreen = newState;
         
         switch (BlackScreen)
         {
@@ -55,9 +55,8 @@ public class Blackscreen : MonoBehaviour
                 break;
         }
         
-        TopBar.transform.DOLocalMoveY(TopBarPos.y,1);
-        BottomBar.transform.DOLocalMoveY (BottomBarPos.y, 1);
-        
+        TopBar.transform.DOLocalMoveY(TopBarPos.y,1);//.SetEase(Ease.InOutSine);
+        BottomBar.transform.DOLocalMoveY (BottomBarPos.y, 1);//.SetEase(Ease.InOutSine);
     }
 
     private void ResetCanvas()
