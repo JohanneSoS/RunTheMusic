@@ -25,17 +25,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     public LevelScript levelScript;
-    public Blackscreen blackScreenScript;
     public SwapDoors[] swapDoorsScripts;
 
     public GameObject LastDoorEntered;
     
     private Animator anim;
-    private bool lockedPlayerMovement;
+    public bool lockedPlayerMovement;
     
     void Start()
     {
         anim = GetComponent<Animator>();
+    }
+    
+    void OnEnable()
+    {
+        EventManager.OnEnterDoorHover += OnEnterDoorHover;
+        EventManager.OnLockPlayerMovement += OnLockPlayerMovement;
+        EventManager.OnUnlockPlayerMovement += OnUnlockPlayerMovement;
     }
 
     void Update()
@@ -108,41 +114,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("IsRobot", false);
         }
         
-        // if (levelScript.triggerBackground == BackGroundType.None && lockedPlayerMovement == false)
-        // {
-        //     foreach (var swapDoor in swapDoorsScripts)
-        //     {
-        //         swapDoor.DeactivateAllOutlines();
-        //     } 
-        //     blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
-        // }
-        
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
-            //blackScreenScript.BlackScreen = Blackscreen.BlackScreenState.BlackScreen;
-            //blackScreenScript.ChangeBlackScreenState();
-            levelScript.lastBackground = levelScript.bgType;
-            levelScript.bgType = levelScript.triggerBackground;
-            AudioPlayer.Instance.StopMusic();
-            AudioPlayer.Instance.PlayEnterDoor();
-            StartCoroutine(EnterRoom());
-            Time.timeScale = 0f;
-            lockedPlayerMovement = true;
+            EventManager.OnDoorEnter();
         }
-    }
-
-    IEnumerator EnterRoom()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        Time.timeScale = 1f;
-        lockedPlayerMovement = false;
-        levelScript.EnterDoor();
-        levelScript.SwapDoors();
-        AudioPlayer.Instance.PlayExitDoor();
-        yield return new WaitForSecondsRealtime(1);
-        blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
-        AudioPlayer.Instance.PlayLevelMusic();
     }
 
     private void FixedUpdate()
@@ -173,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        EventManager.OnDash();
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -192,16 +169,29 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.TryGetComponent<SwapDoors>(out var door))
         {
             levelScript.triggerBackground = GetBackGroundTypeFromDoorTag(other.gameObject.tag);
-            EnterDoorTriggerState(door);
+            //EnterDoorTriggerState(door);
+            OnEnterDoorHover(door);
             LastDoorEntered = other.gameObject;
         }
     }
 
-    private void EnterDoorTriggerState(SwapDoors door)
+    private void OnLockPlayerMovement()
+    {
+        Time.timeScale = 0f;
+        lockedPlayerMovement = true;
+    }
+
+    private void OnUnlockPlayerMovement()
+    {
+        Time.timeScale = 1f;
+        lockedPlayerMovement = false;
+    }
+    
+    private void OnEnterDoorHover(SwapDoors door)
     {
         door.ActivateOutline(levelScript.triggerBackground);
     
-        blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.Cinematic);
+        EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.Cinematic);
     }
 
     private BackGroundType GetBackGroundTypeFromDoorTag(string doorTag)
@@ -224,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
             levelScript.triggerBackground = BackGroundType.None;
             door.DeactivateAllOutlines();
             
-            blackScreenScript.ChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
+            EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
         }
     }
 }

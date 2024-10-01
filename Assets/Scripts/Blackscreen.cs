@@ -25,10 +25,14 @@ public class Blackscreen : MonoBehaviour
 
     void Start()
     {
-        ChangeBlackScreenState(BlackScreenState.NoScreen);
+        OnChangeBlackScreenState(BlackScreenState.NoScreen);
     }
 
-    public void ChangeBlackScreenState(BlackScreenState newState)
+    void OnEnable()
+    {
+        EventManager.OnChangeBlackScreenState += OnChangeBlackScreenState;
+    }
+    public void OnChangeBlackScreenState(BlackScreenState newState)
     {
         //ResetCanvas();
         BlackScreen = newState;
@@ -65,34 +69,6 @@ public class Blackscreen : MonoBehaviour
         pos.anchoredPosition = new Vector2(0, 0);
         pos.localPosition = new Vector2(0, 0);
     }
-    /*public void DespawnCinematicBars()
-    {
-        TopBar.transform.DOMoveY(TopBarStartPos.y, 1);
-        BottomBar.transform.DOMoveY(ButtomBarStartPos.y, 1);
-        BlackScreen = BlackScreenState.None;
-    }
-    
-    public void SpawnCinematicBars()
-    {
-        TopBar.transform.DOMoveY(TopBarCinematicPos.y, 1);
-        BottomBar.transform.DOMoveY(ButtomBarCinematicPos.y, 1);
-        BlackScreen = BlackScreenState.Cinematic;
-    }
-
-    public void FadeToBlack()
-    {
-        TopBar.transform.DOMoveY(TopBarBlackscreenPos.y, 1);
-        BottomBar.transform.DOMoveY(ButtomBarBlackscreenPos.y, 1);
-        BlackScreen = BlackScreenState.BlackScreen;
-    }
-
-    public void FadeFromBlack()
-    {
-        TopBar.transform.DOMoveY(TopBarStartPos.y, 1);
-        BottomBar.transform.DOMoveY(ButtomBarStartPos.y, 1);
-        BlackScreen = BlackScreenState.None;
-    }*/
-    
 
     public enum BlackScreenState
     {

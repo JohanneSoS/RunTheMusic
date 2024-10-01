@@ -8,16 +8,12 @@ using UnityEngine;
 public class LevelScript : MonoBehaviour
 {
     public PlayerMovement playerScript;
-    //public Blackscreen blackScreenScript;
 
     [SerializeField] private GameObject Grasslands;
     [SerializeField] private GameObject Cavelands;
     [SerializeField] private GameObject Darkroom;
     [SerializeField] private GameObject Spaceroom;
     [SerializeField] private GameObject Automataroom;
-    /*[SerializeField] private GameObject DoorToCave;
-    [SerializeField] private GameObject DoorToDarkroom;
-    [SerializeField] private GameObject DoorToGrassland;*/
 
     [SerializeField] Animator plattformAnim;
     [SerializeField] private List<Animator> plattforms;
@@ -43,7 +39,12 @@ public class LevelScript : MonoBehaviour
         AudioPlayer.Instance.bgMusicType = bgType;
         AudioPlayer.Instance.PlayLevelMusic();
     }
-    
+
+    void OnEnable()
+    {
+        EventManager.OnDoorEnter += OnDoorEnter;
+    }
+
     void Update()
     {
         switch (bgType)
@@ -83,9 +84,31 @@ public class LevelScript : MonoBehaviour
         AudioPlayer.Instance.bgMusicType = bgType;
     }
 
+    void OnDoorEnter()
+    {
+        lastBackground = bgType;
+        bgType = triggerBackground;
+        AudioPlayer.Instance.StopMusic();
+        AudioPlayer.Instance.PlayEnterDoor();
+        StartCoroutine(EnterRoom());
+        EventManager.OnLockPlayerMovement();
+    }
+    
+    IEnumerator EnterRoom()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        EventManager.OnUnlockPlayerMovement();
+        EnterDoor();
+        SwapDoors();
+        AudioPlayer.Instance.PlayExitDoor();
+        yield return new WaitForSecondsRealtime(1);
+        EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
+        AudioPlayer.Instance.PlayLevelMusic();
+    }
+    
+
     public void EnterDoor()
     {
-        //bgType = triggerBackground;
         triggerBackground = BackGroundType.None;
 
         foreach (var backGroundKeyValue in backGroundDictionary)
@@ -98,7 +121,7 @@ public class LevelScript : MonoBehaviour
         //backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
     }
 
-    public void SwapDoors()
+    private void SwapDoors()
     {
         switch (lastBackground)
         {
