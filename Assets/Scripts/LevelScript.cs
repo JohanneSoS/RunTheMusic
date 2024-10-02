@@ -51,7 +51,70 @@ public class LevelScript : MonoBehaviour
         EventManager.OnDoorLeave -= OnDoorLeave;
     }
 
-    void Update()   //Plattform Change aus Update rausnehmen
+    void Update()
+    {
+        
+    }
+
+    void OnDoorEnter(BackGroundType trigBg)
+    {
+        lastBackground = bgType;
+        bgType = triggerBackground;
+        StartCoroutine(EnterRoom());
+        EventManager.OnLockPlayerMovement();
+    }
+    
+    IEnumerator EnterRoom()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        EventManager.OnUnlockPlayerMovement();
+        EventManager.OnDoorLeave(bgType);
+        yield return new WaitForSecondsRealtime(1);
+        EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
+        EventManager.OnPlayLevelMusic(bgType);
+    }
+    
+
+    void OnDoorLeave(BackGroundType newBg)
+    {
+        triggerBackground = BackGroundType.None;
+
+        foreach (var backGroundKeyValue in backGroundDictionary)
+        {
+            backGroundKeyValue.Value.SetActive(false);
+        }
+        
+        backGroundDictionary[bgType].SetActive(true);
+
+        ChangePlattforms();
+        SwapDoors();
+    }
+
+    private void SwapDoors()
+    {
+        switch (lastBackground)
+        {
+            case BackGroundType.GrassLands:
+                playerScript.LastDoorEntered.tag = "GrassDoor";
+                break;
+            //noch nicht komplett
+            case BackGroundType.CaveLands:
+                playerScript.LastDoorEntered.tag = "CaveDoor";
+                break;
+            case BackGroundType.DarkRoom:
+                playerScript.LastDoorEntered.tag = "DarkroomDoor";
+                break;
+            case BackGroundType.SpaceRoom:
+                playerScript.LastDoorEntered.tag = "SpaceDoor";
+                break;
+            case BackGroundType.AutomataRoom:
+                playerScript.LastDoorEntered.tag = "AutomataDoor";
+                break;
+        }
+        //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
+    }
+
+    private void ChangePlattforms()
     {
         switch (bgType)
         {
@@ -86,63 +149,6 @@ public class LevelScript : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    void OnDoorEnter(BackGroundType trigBg)
-    {
-        lastBackground = bgType;
-        bgType = triggerBackground;
-        StartCoroutine(EnterRoom());
-        EventManager.OnLockPlayerMovement();
-    }
-    
-    IEnumerator EnterRoom()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        EventManager.OnUnlockPlayerMovement();
-        EventManager.OnDoorLeave(bgType);
-        yield return new WaitForSecondsRealtime(1);
-        EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
-        EventManager.OnPlayLevelMusic(bgType);
-    }
-    
-
-    void OnDoorLeave(BackGroundType newBg)
-    {
-        triggerBackground = BackGroundType.None;
-
-        foreach (var backGroundKeyValue in backGroundDictionary)
-        {
-            backGroundKeyValue.Value.SetActive(false);
-        }
-        
-        backGroundDictionary[bgType].SetActive(true);
-        SwapDoors();
-    }
-
-    private void SwapDoors()
-    {
-        switch (lastBackground)
-        {
-            case BackGroundType.GrassLands:
-                playerScript.LastDoorEntered.tag = "GrassDoor";
-                break;
-            //noch nicht komplett
-            case BackGroundType.CaveLands:
-                playerScript.LastDoorEntered.tag = "CaveDoor";
-                break;
-            case BackGroundType.DarkRoom:
-                playerScript.LastDoorEntered.tag = "DarkroomDoor";
-                break;
-            case BackGroundType.SpaceRoom:
-                playerScript.LastDoorEntered.tag = "SpaceDoor";
-                break;
-            case BackGroundType.AutomataRoom:
-                playerScript.LastDoorEntered.tag = "AutomataDoor";
-                break;
-            
-        }
-        //playerScript.LastDoorEntered.tag = //Tür wird zu Tür vom letzten Hintergrund
     }
 }
 
