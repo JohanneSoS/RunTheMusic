@@ -43,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnLockPlayerMovement += OnLockPlayerMovement;
         EventManager.OnUnlockPlayerMovement += OnUnlockPlayerMovement;
     }
+    void OnDisable()
+    {
+        EventManager.OnEnterDoorHover -= OnEnterDoorHover;
+        EventManager.OnLockPlayerMovement -= OnLockPlayerMovement;
+        EventManager.OnUnlockPlayerMovement -= OnUnlockPlayerMovement;
+    }
 
     void Update()
     {
@@ -66,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+            EventManager.OnDash();
         }
         
         Flip();
@@ -117,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         if (levelScript.triggerBackground != BackGroundType.None &&
             (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Return)))
         {
-            EventManager.OnDoorEnter();
+            EventManager.OnDoorEnter(levelScript.triggerBackground);
         }
     }
 
@@ -149,7 +156,6 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        EventManager.OnDash();
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;

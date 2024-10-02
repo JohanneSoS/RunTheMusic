@@ -5,9 +5,15 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    public static UnityAction OnDoorEnter;
+    public static UnityAction OnButtonClick;
 
-    public static UnityAction OnDoorLeave;
+    public static UnityAction OnPlayMenuMusic;
+    
+    public static UnityAction<BackGroundType> OnPlayLevelMusic;
+    
+    public static UnityAction<BackGroundType> OnDoorEnter;
+
+    public static UnityAction<BackGroundType> OnDoorLeave;
 
     public static UnityAction<SwapDoors> OnEnterDoorHover;
 
@@ -20,6 +26,8 @@ public class EventManager : MonoBehaviour
     public static UnityAction OnDash;
 
     public static UnityAction<Blackscreen.BlackScreenState> OnChangeBlackScreenState;
+    
+    
 
 
 }

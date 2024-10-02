@@ -36,16 +36,22 @@ public class LevelScript : MonoBehaviour
             { BackGroundType.SpaceRoom, Spaceroom },
             { BackGroundType.AutomataRoom, Automataroom },
         };
-        AudioPlayer.Instance.bgMusicType = bgType;
-        AudioPlayer.Instance.PlayLevelMusic();
+        //AudioPlayer.Instance.bgMusicType = bgType;
+        EventManager.OnPlayLevelMusic(bgType);
     }
 
     void OnEnable()
     {
         EventManager.OnDoorEnter += OnDoorEnter;
+        EventManager.OnDoorLeave += OnDoorLeave;
+    }
+    void OnDisable()
+    {
+        EventManager.OnDoorEnter -= OnDoorEnter;
+        EventManager.OnDoorLeave -= OnDoorLeave;
     }
 
-    void Update()
+    void Update()   //Plattform Change aus Update rausnehmen
     {
         switch (bgType)
         {
@@ -80,16 +86,12 @@ public class LevelScript : MonoBehaviour
                 }
                 break;
         }
-
-        AudioPlayer.Instance.bgMusicType = bgType;
     }
 
-    void OnDoorEnter()
+    void OnDoorEnter(BackGroundType trigBg)
     {
         lastBackground = bgType;
         bgType = triggerBackground;
-        AudioPlayer.Instance.StopMusic();
-        AudioPlayer.Instance.PlayEnterDoor();
         StartCoroutine(EnterRoom());
         EventManager.OnLockPlayerMovement();
     }
@@ -98,27 +100,24 @@ public class LevelScript : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         EventManager.OnUnlockPlayerMovement();
-        EnterDoor();
-        SwapDoors();
-        AudioPlayer.Instance.PlayExitDoor();
+        EventManager.OnDoorLeave(bgType);
         yield return new WaitForSecondsRealtime(1);
         EventManager.OnChangeBlackScreenState(Blackscreen.BlackScreenState.NoScreen);
-        AudioPlayer.Instance.PlayLevelMusic();
+        EventManager.OnPlayLevelMusic(bgType);
     }
     
 
-    public void EnterDoor()
+    void OnDoorLeave(BackGroundType newBg)
     {
         triggerBackground = BackGroundType.None;
 
         foreach (var backGroundKeyValue in backGroundDictionary)
         {
             backGroundKeyValue.Value.SetActive(false);
-            //backGroundKeyValue.Value.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
-
+        
         backGroundDictionary[bgType].SetActive(true);
-        //backGroundDictionary[bgType].GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        SwapDoors();
     }
 
     private void SwapDoors()

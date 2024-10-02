@@ -199,3 +199,100 @@ MonoBehaviour:
       Data3: 1712751789
       Data4: -1942488580
     Path: event:/Music/Automata Escape simple
+  soundItems:
+  - sound: 1
+    EventReference:
+      Guid:
+        Data1: -1595830719
+        Data2: 1183597900
+        Data3: 1097631675
+        Data4: 362413890
+      Path: event:/Door Entry (last door)/Enter Door
+  - sound: 2
+    EventReference:
+      Guid:
+        Data1: 983082913
+        Data2: 1086267354
+        Data3: 148357545
+        Data4: 850623346
+      Path: event:/Door Exit (new door)/New Door
+  - sound: 3
+    EventReference:
+      Guid:
+        Data1: -676996070
+        Data2: 1264989184
+        Data3: -1133515365
+        Data4: 649567946
+      Path: event:/SFX neutral/Door Open Squeak SFX
+  - sound: 4
+    EventReference:
+      Guid:
+        Data1: -676996070
+        Data2: 1264989184
+        Data3: -1133515365
+        Data4: 649567946
+      Path: event:/SFX neutral/Door Open Squeak SFX
+  - sound: 5
+    EventReference:
+      Guid:
+        Data1: 1101858343
+        Data2: 1231396013
+        Data3: -1423615841
+        Data4: -981904892
+      Path: event:/SFX neutral/Door Close SFX
+  - sound: 4
+    EventReference:
+      Guid:
+        Data1: -676996070
+        Data2: 1264989184
+        Data3: -1133515365
+        Data4: 649567946
+      Path: event:/SFX neutral/Door Open Squeak SFX
+  - sound: 6
+    EventReference:
+      Guid:
+        Data1: 1495317055
+        Data2: 1200194981
+        Data3: 1359806388
+        Data4: 378614146
+      Path: event:/Music/Main Menu
+  - sound: 7
+    EventReference:
+      Guid:
+        Data1: 1725039036
+        Data2: 1294555644
+        Data3: 1397498545
+        Data4: 1208737995
+      Path: event:/Music/Grasslands simple
+  - sound: 8
+    EventReference:
+      Guid:
+        Data1: 1392129805
+        Data2: 1255229181
+        Data3: 858698882
+        Data4: -60398091
+      Path: event:/Music/Ghibli simple
+  - sound: 9
+    EventReference:
+      Guid:
+        Data1: 87598881
+        Data2: 1099516080
+        Data3: -1086045537
+        Data4: -1673115184
+      Path: event:/Music/Deescelator simple
+  - sound: 10
+    EventReference:
+      Guid:
+        Data1: 1253385507
+        Data2: 1107245114
+        Data3: 1179652793
+        Data4: -711050120
+      Path: event:/Music/Aural Space simple
+  - sound: 11
+    EventReference:
+      Guid:
+        Data1: 550343661
+        Data2: 1278489474
+        Data3: 1712751789
+        Data4: -1942488580
+      Path: event:/Music/Automata Escape simple

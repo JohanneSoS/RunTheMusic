@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
    
     void Start()
     {
-        AudioPlayer.Instance.PlayMenuMusic();
+        EventManager.OnPlayMenuMusic();
     }
     
     public void PlayGame()
