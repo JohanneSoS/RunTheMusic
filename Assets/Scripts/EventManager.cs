@@ -26,8 +26,6 @@ public class EventManager : MonoBehaviour
     public static UnityAction OnDash;
 
     public static UnityAction<Blackscreen.BlackScreenState> OnChangeBlackScreenState;
-    
-    
 
 
 }

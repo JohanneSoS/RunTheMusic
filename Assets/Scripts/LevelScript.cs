@@ -51,17 +51,12 @@ public class LevelScript : MonoBehaviour
         EventManager.OnDoorLeave -= OnDoorLeave;
     }
 
-    void Update()
-    {
-        
-    }
-
     void OnDoorEnter(BackGroundType trigBg)
     {
         lastBackground = bgType;
         bgType = triggerBackground;
         StartCoroutine(EnterRoom());
-        EventManager.OnLockPlayerMovement();
+        EventManager.OnLockPlayerMovement?.Invoke();
     }
     
     IEnumerator EnterRoom()

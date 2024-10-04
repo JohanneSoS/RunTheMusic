@@ -14,29 +14,6 @@ public class AudioPlayer : MonoBehaviour
 {
    //public BackGroundType bgMusicType;
    public static AudioPlayer Instance;
-   
-   /*[SerializeField] private EventReference EnterDoorFromGrass;
-   [SerializeField] private EventReference EnterDoorFromCave;
-   [SerializeField] private EventReference EnterDoorFromDark;
-   [SerializeField] private EventReference EnterDoorFromSpace;
-   [SerializeField] private EventReference EnterDoorFromAutomata;
-
-   [SerializeField] private EventReference ExitDoorInGrass;
-   [SerializeField] private EventReference ExitDoorInCave;
-   [SerializeField] private EventReference ExitDoorInDark;
-   [SerializeField] private EventReference ExitDoorInSpace;
-   [SerializeField] private EventReference ExitDoorInAutomata;
-   
-   [SerializeField] private EventReference ButtonClickSFX;
-   [SerializeField] private EventReference OpenDoorSFX;
-   [SerializeField] private EventReference CloseDoorSFX;
-   
-   [SerializeField] private EventReference MusicMainMenu;
-   [SerializeField] private EventReference MusicGrass;
-   [SerializeField] private EventReference MusicCave;
-   [SerializeField] private EventReference MusicDark;
-   [SerializeField] private EventReference MusicSpace;
-   [SerializeField] private EventReference MusicAutomata;*/
 
    public enum Sound
    {
@@ -148,6 +125,14 @@ public class AudioPlayer : MonoBehaviour
       loopQueue.First((item => item.Sound == sound)).StopLoop();
    }
 
+   private void StopLoops()
+   {
+      foreach (var loopItem in loopQueue)
+      {
+         loopItem.StopLoop();
+      }
+   }
+
    private void OnDestroy()
    {
       //Clean UP
@@ -156,19 +141,6 @@ public class AudioPlayer : MonoBehaviour
          loopItem.Destroy();
       }
    }
-
-
-   private void StopMusic()
-   {
-      StopLoop(Sound.MusicMainMenu);
-      StopLoop(Sound.MusicAutomata);
-      StopLoop(Sound.MusicCave);
-      StopLoop(Sound.MusicGrass);
-      StopLoop(Sound.MusicSpace);
-      StopLoop(Sound.MusicDark);
-   }
-   
-   //General SFX
 
    void OnEnable()
    {
@@ -197,7 +169,7 @@ public class AudioPlayer : MonoBehaviour
    
    void OnDoorEnter (BackGroundType bgMusicType)
    {
-      StopMusic();
+      StopLoops();
       PlayOneShot(Sound.OpenDoorSFX);
       
       switch (bgMusicType)
@@ -249,13 +221,13 @@ public class AudioPlayer : MonoBehaviour
    //Music Play
    void OnPlayMenuMusic()
    {
-      StopMusic();
+      StopLoops();
       StartLoop(Sound.MusicMainMenu);
    }
 
    void OnPlayLevelMusic(BackGroundType bgType)
    {
-      StopMusic();
+      StopLoops();
       
       switch (bgType)
       {
